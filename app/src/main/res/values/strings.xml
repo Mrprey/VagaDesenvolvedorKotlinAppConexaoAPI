@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">App_Conexão_API</string>
+    <string name="tv_titulo">Título</string>
+    <string name="tv_estado">Estado</string>
+</resources>
