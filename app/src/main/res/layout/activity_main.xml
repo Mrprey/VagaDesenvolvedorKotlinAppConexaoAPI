@@ -19,7 +19,8 @@
             android:layout_marginLeft="8dp"
             android:gravity="center"
             android:text="@string/tv_estado"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_marginStart="8dp" />
 
         <TextView
             android:id="@+id/tv_titulo"
