@@ -12,32 +12,48 @@ import com.vagaDevJya.R
 
 
 
-class IssuesAdapter(private val issue: List<Example>) : RecyclerView.Adapter<IssuesAdapter.IssueViewHolder>() {
+class IssuesAdapter
+    : RecyclerView.Adapter<IssuesAdapter.IssueViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_title_status, parent, false)
+    private var listIssues = ArrayList<Example>()
+    var page = 1
+    var isLoading = false
+    val limit = 21
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
+    : IssueViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_title_status, parent, false)
         return IssueViewHolder(view)
     }
 
-    override fun getItemCount() = issue.size
+    override fun getItemCount() = listIssues.size
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        holder.bind(issue[position])
+        holder.bind(listIssues[position])
 
 
     }
 
-    inner class IssueViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    fun getPage(page: Int, limit: Int){
+        val start: Int = (page*limit) + 1
+        val end: Int = page*limit
+
+        for (i in start..end){
+
+        }
+    }
+
+    inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cardView = this.itemView.findViewById<CardView>(R.id.cv_statusTitulo)
         fun bind(example: Example) {
-            var textView_title = this.itemView.findViewById<TextView>(R.id.tv_textTitulo)
-            var imageView_status = this.itemView.findViewById<ImageView>(R.id.iv_status)
-            with(example){
+            val textView_title = this.itemView.findViewById<TextView>(R.id.tv_textTitulo)
+            val imageView_status = this.itemView.findViewById<ImageView>(R.id.iv_status)
+            with(example) {
                 textView_title.text = title.toString()
-                if (state.toString().equals("open", true)){
+                if (state.toString().equals("open", true)) {
                     imageView_status.setImageResource(R.mipmap.ic_alive)
-                }
-                else{
+                } else {
                     imageView_status.setImageResource(R.mipmap.ic_disabled)
                 }
 
@@ -46,12 +62,14 @@ class IssuesAdapter(private val issue: List<Example>) : RecyclerView.Adapter<Iss
         }
     }
 
-    fun onItemClick(parent: IssuesAdapter, view: View, position: Int,id: Long): Unit {}
+    fun addList(newIssues: ArrayList<Example>){
+        listIssues.addAll(newIssues)
+        notifyDataSetChanged()
+    }
 
-    fun onClick(v: View?) {}
+    fun clearList(){
+        listIssues.clear()
+        notifyDataSetChanged()
+    }
+
 }
-
-private fun ImageView.setImageDrawable(icAlive: Int) {
-
-}
-

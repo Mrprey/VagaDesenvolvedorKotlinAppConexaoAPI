@@ -14,7 +14,4 @@ class RetrofitConfig{
                 .build()
         }
     }
-
-
-
 }
