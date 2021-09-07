@@ -57,16 +57,3 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
-private fun <T> MutableLiveData<T>.postValue(body: List<Example>?) {
-
-}
-
-
-@JvmName("enqueueT")
-private fun <T> Call<T>?.enqueue(callback: Callback<List<Example>>) {}
-
-
-
-
-
